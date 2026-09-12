@@ -1,0 +1,5 @@
+require("Neovim_plugins.remap")
+require("Neovim_plugins.colorscheme")
+require("Neovim_plugins.lazy")
+require("Neovim_plugins.lsp")
+require("Neovim_plugins.set")
