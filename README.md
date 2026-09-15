@@ -64,10 +64,21 @@ npm -v
 
 ### 4. Tree-sitter CLI
 
-Needed for parsing/highlighting via `nvim-treesitter`.
+Needed for parsing/highlighting via `nvim-treesitter`. Installed via `cargo`
+(Rust's package manager), not npm.
+
+If you don't have Rust/cargo installed yet:
 
 ```bash
-npm install -g tree-sitter-cli
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+cargo --version
+```
+
+Then install tree-sitter CLI:
+
+```bash
+cargo install tree-sitter-cli
 tree-sitter --version
 ```
 
@@ -130,7 +141,7 @@ right session type (`echo $XDG_SESSION_TYPE` — should say `x11` or
 ## Installation of config
 
 ```bash
-git clone git@github.com:<your-username>/<your-dotfiles-repo>.git ~/.config/nvim
+git clone https://github.com/vedantshah-ntciti/My-Neovim-Config.git ~/.config/nvim
 nvim
 ```
 
@@ -141,10 +152,9 @@ wired up correctly.
 ## Post-install checklist
 
 - [ ] `:checkhealth` shows no critical errors
-- [ ] LSP attaches on a test file (`:LspInfo`)
 - [ ] Clipboard yank/paste works across apps (`"+y` then paste outside nvim)
-- [ ] Treesitter highlighting active (`:TSModuleInfo` or open a code file and check colors)
 - [ ] Fuzzy search / live grep works (tests ripgrep integration)
+- [ ] READ the remaps, sets. Also read the lsp files, and treesitter files, as you may have to manually added parsers, and lsp for requirements.
 
 ## Notes
 
