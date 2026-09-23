@@ -44,7 +44,7 @@ local plugins = {
                     vim.treesitter.start()
                     vim.wo.foldmethod = "expr"
                     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    --vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })
         end
@@ -65,7 +65,44 @@ local plugins = {
         name = "catppuccin-nvim",
         priority = 1000,
         config = function()
+            require("catppuccin").setup({
+                transparent_background = true,
+            })
             vim.cmd.colorscheme("catppuccin-nvim")
+        end
+    },
+    -- lua/plugins/rose-pine.lua
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        config = function()
+            require('rose-pine').setup({
+                variant = 'moon',
+                disable_background = true,
+                disable_float_background = true,
+
+                enable = {
+                    terminal = true,
+                    legacy_highlights = false,
+                    migrations = true,
+                },
+
+                styles = {
+                    bold = true,
+                    italic = true,
+                    transparency = true,
+                },
+
+                highlight_groups = {
+                    DiagnosticError = { fg = 'love' },
+                    DiagnosticWarn = { fg = 'gold' },
+                    DiagnosticUnderlineError = { fg = 'love', undercurl = true },
+                    DiagnosticUnderlineWarn = { fg = 'gold', undercurl = true },
+                    DiagnosticVirtualTextError = { fg = 'love', bg = 'love', blend = 15 , italic = true},
+                    DiagnosticVirtualTextWarn = { fg = 'gold', bg = 'gold', blend = 15 , italic = true},
+                },
+            })
+            vim.cmd("colorscheme rose-pine")
         end
     }
 

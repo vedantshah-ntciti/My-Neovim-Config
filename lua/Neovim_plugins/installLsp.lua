@@ -4,5 +4,4 @@ return
     "pyright",
     "html",
     "cssls",
-    "clangd",
 }

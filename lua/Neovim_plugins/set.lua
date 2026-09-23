@@ -7,6 +7,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
@@ -22,6 +23,16 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "150"
 
 vim.g.mapleader = " "
+
+vim.g.netrw_banner = 0
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  callback = function()
+    vim.opt_local.relativenumber = true
+    vim.opt_local.number = true
+  end,
+})

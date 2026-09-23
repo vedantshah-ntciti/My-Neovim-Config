@@ -39,17 +39,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Trigger completion manually with <C-Space>
-vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', { desc = 'Completion: trigger' })
-
--- Confirm selection with <C-y>
-vim.keymap.set('i', '<C-y>', function()
-    if vim.fn.pumvisible() == 1 then
-        if vim.fn.complete_info()['selected'] ~= -1 then
-            return '<C-y>'
-        else
-            return '<C-n><C-y>'
-        end
-    else
-        return '<C-y>'
-    end
-end, { expr = true, desc = 'Completion: confirm' })
+--vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', { desc = 'Completion: trigger' })
+--
+---- Confirm selection with <C-y>
+--vim.keymap.set('i', '<C-y>', function()
+--    if vim.fn.pumvisible() == 1 then
+--        if vim.fn.complete_info()['selected'] ~= -1 then
+--            return '<C-y>'
+--        else
+--            return '<C-n><C-y>'
+--        end
+--    else
+--        return '<C-y>'
+--    end
+--end, { expr = true, desc = 'Completion: confirm' })
