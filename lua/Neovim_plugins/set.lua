@@ -27,7 +27,7 @@ vim.opt.colorcolumn = "150"
 
 vim.g.mapleader = " "
 
-vim.g.netrw_banner = 0
+--vim.g.netrw_banner = 0
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "netrw",
@@ -36,3 +36,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.number = true
   end,
 })
+
+vim.opt.mouse = ""

@@ -4,4 +4,5 @@ return
     "pyright",
     "html",
     "cssls",
+    "ts_ls"
 }
