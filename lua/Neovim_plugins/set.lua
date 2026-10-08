@@ -38,3 +38,16 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.opt.mouse = ""
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME").. "/.vim/undodir"
+vim.opt.undofile = true
+
+local hl = vim.hl or vim.highlight
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
+  callback = function()
+    hl.on_yank({ higroup = "IncSearch", timeout = 50 })
+  end,
+})

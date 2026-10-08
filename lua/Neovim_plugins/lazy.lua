@@ -98,12 +98,36 @@ local plugins = {
                     DiagnosticWarn = { fg = 'gold' },
                     DiagnosticUnderlineError = { fg = 'love', undercurl = true },
                     DiagnosticUnderlineWarn = { fg = 'gold', undercurl = true },
-                    DiagnosticVirtualTextError = { fg = 'love', bg = 'love', blend = 15 , italic = true},
-                    DiagnosticVirtualTextWarn = { fg = 'gold', bg = 'gold', blend = 15 , italic = true},
+                    DiagnosticVirtualTextError = { fg = 'love', bg = 'love', blend = 15, italic = true },
+                    DiagnosticVirtualTextWarn = { fg = 'gold', bg = 'gold', blend = 15, italic = true },
                 },
             })
             vim.cmd("colorscheme rose-pine")
         end
+    },
+    -- lazy.nvim
+    {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = {
+            filetypes = { "*", "!markdown" }, -- all filetypes except markdown
+            options = {
+                parsers = {
+                    css = true,                                -- preset: names, hex, rgb, hsl, oklch, css_var
+                    hex = { default = true, rrggbbaa = true }, -- also #RRGGBBAA
+                    tailwind = { enable = true },              -- Tailwind color names
+                },
+                display = {
+                    mode = "background", -- "background" | "foreground" | "underline" | "virtualtext"
+                    virtualtext = { char = "■", position = "after" },
+                },
+                always_update = false,
+                debounce_ms = 0,
+            },
+        },
+    },
+    {
+        'mbbill/undotree'
     }
 
 }
