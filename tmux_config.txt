@@ -1,0 +1,80 @@
+#inside .tmux.conf
+
+bind r source-file ~/.tmux.conf \; display "Reloaded"
+unbind C-b
+set -g prefix C-q
+bind C-q send-prefix
+
+setw -g pane-base-index 1
+set -g base-index 1
+set -g history-limit 10000
+
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc"
+
+set -g mouse on
+setw -g mode-keys vi
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "wl-copy"
+bind -T copy-mode-vi WheelDownPane select-pane \; send -X -N 3 scroll-down
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-pipe-and-cancel "wl-copy"
+set -g focus-events on         # lets nvim detect focus changes
+
+bind % split-window -h -c "#{pane_current_path}"
+bind '"' split-window -v -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+#set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+
+#rose-pine 
+set -g @plugin 'rose-pine/tmux'
+# ... alongside
+set -g @plugin 'tmux-plugins/tpm'
+# To update plugin for future revisions or bug fixes, do the "Prefix + U" keycombo
+set -g @rose_pine_variant 'moon' # Options are 'main', 'moon' or 'dawn'
+
+set -g @rose_pine_user 'off'
+set -g @rose_pine_directory 'off'
+set -g @rose_pine_date_time '%H:%M | %a'
+set -g @rose_pine_host 'off'
+
+# Background
+set -g @rose_pine_bar_bg_disable 'on'
+set -g @rose_pine_bar_bg_disabled_color_option '#26233a'
+#set -g @rose_pine_bar_bg_disabled_color_option 'default'
+
+# Separators (arrow look from your screenshot)
+set -g @rose_pine_left_separator ' '
+set -g @rose_pine_right_separator ' ← '
+set -g @rose_pine_window_separator ' → '
+set -g @rose_pine_field_separator ' | '
+
+# Icons (keep your Nerd Font glyphs here, no changes needed)
+set -g @rose_pine_session_icon ''
+set -g @rose_pine_current_window_icon ''
+set -g @rose_pine_folder_icon ''
+#set -g @rose_pine_username_icon ''
+#set -g @rose_pine_hostname_icon '󰒋'
+set -g @rose_pine_date_time_icon '󰃰'
+
+set -g @rose_pine_show_current_program 'on'
+
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+set -ga window-status-current-format '*'
