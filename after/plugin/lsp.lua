@@ -3,11 +3,11 @@ vim.o.autocomplete = true
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'fuzzy', 'popup' }
 
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -23,10 +23,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
+            { buffer = ev.buf, desc = "Code action" })
         vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        --vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        --vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+        vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
         vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))

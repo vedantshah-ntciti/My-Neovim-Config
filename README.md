@@ -1,4 +1,4 @@
-# My Neovim Config
+# xMy Neovim Config
 
 Personal Neovim setup. This README covers how to get a fresh machine (Ubuntu)
 ready to run this config from scratch.

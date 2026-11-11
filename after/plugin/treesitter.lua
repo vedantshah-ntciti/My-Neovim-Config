@@ -3,7 +3,7 @@ config = function()
 
     require("nvim-treesitter").install({
         "lua", "vim", "vimdoc", "bash", "python",
-        "c", "cpp", "javascript", "html", "css",
+        "c", "cpp", "javascript", "html", "css", "nasm"
     })
 
     vim.api.nvim_create_autocmd("FileType", {

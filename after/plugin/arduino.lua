@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('my.arduino', { clear = true }),
     callback = function(args)
         local opts = { buffer = args.buf, silent = true }
+        vim.bo.commentstring = "// %s"
 
         local NODEMCU_FQBN = 'esp8266:esp8266:nodemcuv2'
 
@@ -73,10 +74,11 @@ vim.api.nvim_create_autocmd('FileType', {
         end, vim.tbl_extend('force', opts, { desc = 'Arduino: List Boards' }))
 
         vim.keymap.set('n', '<leader>fqb', function()
-            vim.ui.input({ prompt = 'FQBN override (empty = auto): ', default = vim.g.arduino_fqbn or '' }, function(input)
-                if input == nil then return end
-                vim.g.arduino_fqbn = (input ~= '') and input or nil
-            end)
+            vim.ui.input({ prompt = 'FQBN override (empty = auto): ', default = vim.g.arduino_fqbn or '' },
+                function(input)
+                    if input == nil then return end
+                    vim.g.arduino_fqbn = (input ~= '') and input or nil
+                end)
         end, vim.tbl_extend('force', opts, { desc = 'Arduino: Set/Clear FQBN override' }))
     end,
 })

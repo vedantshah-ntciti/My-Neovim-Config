@@ -32,7 +32,7 @@ local plugins = {
 
             require("nvim-treesitter").install({
                 "lua", "vim", "vimdoc", "bash", "python",
-                "c", "cpp", "javascript", "html", "css",
+                "c", "cpp", "javascript", "html", "css", "nasm"
             })
 
             vim.api.nvim_create_autocmd("FileType", {
@@ -71,7 +71,6 @@ local plugins = {
             vim.cmd.colorscheme("catppuccin-nvim")
         end
     },
-    -- lua/plugins/rose-pine.lua
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -128,8 +127,17 @@ local plugins = {
     },
     {
         'mbbill/undotree'
-    }
+    },
+    {
+        'numToStr/Comment.nvim',
+        event = { "BufReadPre", "BufNewFile" }, -- not ft = "lua"
+        dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring', opts = { enable_autocmd = false },
+        },
 
+    },
+    {
+        "sphamba/smear-cursor.nvim"
+    }
 }
 local opts = {}
 

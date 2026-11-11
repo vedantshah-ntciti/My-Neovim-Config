@@ -81,3 +81,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
         end
     end,
 })
+
+vim.o.exrc = true
+vim.o.secure = true

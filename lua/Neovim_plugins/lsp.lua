@@ -21,3 +21,11 @@ vim.lsp.enable("pyright")
 vim.lsp.enable(
     require("Neovim_plugins.installLsp")
 )
+
+-- LSP (Neovim 0.11+)
+vim.lsp.config("autotools_ls", {
+  cmd = { "autotools-language-server" },
+  --filetypes = { "make" },
+})
+vim.lsp.enable("autotools_ls")
+

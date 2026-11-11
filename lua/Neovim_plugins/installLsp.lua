@@ -5,4 +5,5 @@ return
     "html",
     "cssls",
     "ts_ls"
+    --"autotools-language-server"
 }
